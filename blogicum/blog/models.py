@@ -7,16 +7,11 @@ User = get_user_model()
 
 
 class Category(PublishedModel):
-    title = models.CharField(
-        max_length=256,
-        verbose_name='Заголовок'
-    )
-    description = models.TextField(
-        verbose_name='Описание'
-    )
+    title = models.CharField('Заголовок', max_length=256)
+    description = models.TextField('Описание')
     slug = models.SlugField(
+        'Идентификатор',
         unique=True,
-        verbose_name='Идентификатор',
         help_text='Идентификатор страницы для URL;'
                   ' разрешены символы латиницы, цифры, дефис и подчёркивание.'
     )
@@ -31,8 +26,8 @@ class Category(PublishedModel):
 
 class Location(PublishedModel):
     name = models.CharField(
+        'Название места',
         max_length=256,
-        verbose_name='Название места'
     )
 
     class Meta:
@@ -45,14 +40,12 @@ class Location(PublishedModel):
 
 class Post(PublishedModel):
     title = models.CharField(
-        max_length=256,
-        verbose_name='Заголовок'
+        'Заголовок',
+        max_length=256
     )
-    text = models.TextField(
-        verbose_name='Текст'
-    )
+    text = models.TextField('Текст')
     pub_date = models.DateTimeField(
-        verbose_name='Дата и время публикации',
+        'Дата и время публикации',
         help_text='Если установить дату и время в '
                   'будущем — можно делать отложенные публикации.'
     )
@@ -78,6 +71,7 @@ class Post(PublishedModel):
     class Meta:
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
+        ordering = ('-pub_date',)
 
     def __str__(self):
         return self.title
