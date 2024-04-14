@@ -1,15 +1,14 @@
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
-from django.http import Http404
 
 from .models import Post, Category
 
 
 MAX_POSTS = 5
 POST_LIST = Post.objects.filter(
-        is_published=True,
-        category__is_published=True,
-    ).all()
+    is_published=True,
+    category__is_published=True
+)
 
 
 def index(request):
