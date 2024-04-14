@@ -29,7 +29,7 @@ def post_detail(request, post_id: int):
     return render(request, template, context)
 
 
-def category_posts(request, category_slug: str)
+def category_posts(request, category_slug: str):
     template = 'blog/category.html'
     category = get_object_or_404(
         Category, slug=category_slug, is_published=True)
